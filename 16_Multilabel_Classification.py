@@ -45,7 +45,7 @@ wandb.watch_called = False # Re-run the model without restarting the runtime, un
 
 gound_truth_list = []
 answer_list = []
-total_epoch = 1000
+total_epoch = 50
 Leaning_Rate = 0.001
 
 #아래 둘중 1개 선택

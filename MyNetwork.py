@@ -20,7 +20,7 @@ from torchvision.utils import make_grid
 from torch.utils.data import Dataset, DataLoader
 import time
 
-from sklearn.metrics import confusion_matrix
+#from sklearn.metrics import confusion_matrix
 
 from torchvision import datasets, transforms
 
@@ -31,15 +31,15 @@ import itertools
 gound_truth_list = []
 answer_list = []
 
-#Cuda¸¦ È°¿ëÇÒ ¼ö ¾ø¾î ½Ã°£ÀÌ ³Ê¹« ¿À·¡ °É·Á¼­ È½¼ö¸¦ ÁÙ¿´½À´Ï´Ù
+
 total_epoch = 30
 Leaning_Rate = 0.001
 
-#¸ðµ¨ ÀÌ¸§
+#ï¿½ï¿½ ï¿½Ì¸ï¿½
 model_type ="mymodel"
 
 #https://matplotlib.org/api/_as_gen/matplotlib.pyplot.imshow.html
-#pyplotÀÇ imshow¸¦ È°¿ëÇÑ °Í
+#pyplotï¿½ï¿½ imshowï¿½ï¿½ È°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 def imshow(inp, cmap=None):
     """Imshow for Tensor."""
     inp = inp.numpy().transpose((1, 2, 0))
@@ -176,12 +176,12 @@ def training():
 
 
 
-    #Cuda¸¦ ¾µ ¼ö ¾ø½À´Ï´Ù
+    #Cudaï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
     torch.set_default_tensor_type('torch.FloatTensor')
 
     # ======================================================
-    # °³ °í¾çÀÌ
-    # Æú´õ ±¸ºÐ ÇÊ¿ä
+    # ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    # ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
     '''
     TRAIN_PATH = "./dogs-vs-cats_train"
     TEST_PATH = "./dogs-vs-cats_test"
@@ -196,7 +196,7 @@ def training():
 
     '''
     # -----------------------------------------------------------------------------------------------
-    # IM Data ºÒ·¯¿À±â
+    # IM Data ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 
     TRAIN_PATH = "./data/image_data_train_noise2"
     TEST_PATH = "./data/image_data_test_noise2"
@@ -234,7 +234,7 @@ def training():
     # wandb.watch(model, log="all")
 
     print("-------------- model selection------------------")
-    #³»°¡ ¸¸µç ¸ðµ¨
+    #ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     if model_type == "mymodel":
 
         model = Net(len(train.classes))
@@ -251,7 +251,7 @@ def training():
 
    
 
-#¹Ýº¹¹® ¿©±â¼­ ¹Ýº¹ÇÐ½ÀÇÑ´Ù.
+#ï¿½Ýºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¼­ ï¿½Ýºï¿½ï¿½Ð½ï¿½ï¿½Ñ´ï¿½.
     for epoch in range(1, total_epoch):
 
         print("-----------training: {} epoch-----------".format(epoch))
