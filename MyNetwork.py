@@ -32,7 +32,7 @@ gound_truth_list = []
 answer_list = []
 
 
-total_epoch = 30
+total_epoch = 100
 Leaning_Rate = 0.001
 
 #�� �̸�
@@ -78,7 +78,7 @@ class Net(nn.Module):
 
 
 
-def fit(epoch, model, data_loader, phase='training', volatile=False, is_cuda=True):
+def fit(epoch, model, data_loader, phase='training', volatile=False, is_cuda=False):
 
 
     
@@ -99,15 +99,7 @@ def fit(epoch, model, data_loader, phase='training', volatile=False, is_cuda=Tru
     for batch_idx, (data, target) in enumerate(data_loader):
 
 
-        #print("is_cuda inside:{}".format(is_cuda))
-        '''
-        if is_cuda:
-            data = data.to('cuda')
-            target = target.to('cuda')
-        else:
-            data = data.to('cpu')
-            target = target.to('cpu')
-        '''
+
 
         # data, target = data.cuda(), target.cuda()
 
@@ -255,6 +247,8 @@ def training():
     for epoch in range(1, total_epoch):
 
         print("-----------training: {} epoch-----------".format(epoch))
+# step 1) Calaculate Acuuracy
+
 
         epoch_loss, epoch_accuracy = fit(epoch, model, train_data_loader, phase='training')
         val_epoch_loss, val_epoch_accuracy = fit(epoch, model, valid_data_loader, phase='validation')
@@ -332,7 +326,7 @@ def training():
     #plot_confusion_matrix(gound_truth_list_1, ans_truth_list_1, classes=my_class, normalize=True, title="Normalized Confusion Matrix")
 
     plt.show()
-
+   
 
     # a= confusion_matrix(gound_truth_list_1, ans_truth_list_1)
     # print("confusion matrix: \n {}".format(a))
