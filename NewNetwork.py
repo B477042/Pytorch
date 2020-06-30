@@ -92,3 +92,38 @@ def fit(epoch, model, data_loader, phase='training', volatile=False):
         loss = F.nll_loss(output,target)
         running_loss +=F.nll_loss(output,target, size_average= False).data
 
+        preds = output.data.max(dim=1, keepdim=True)[1]
+
+        gound_truth = target.data
+
+        # print("preds:{}".format(preds))
+
+        answer = preds.squeeze()
+
+        # print("gound_truth:{}".format(gound_truth))
+        # print("answer:{}".format(answer))
+
+        a = gound_truth.data.detach().cpu().numpy()
+        b = answer.data.detach().cpu().numpy()
+
+        gound_truth_list.append(a)
+        answer_list.append(b)
+
+        # print("ground_truth numpy:{}".format(a))
+        # print("answer numpy:{}".format(b))
+
+        running_correct += preds.eq(target.data.view_as(preds)).cpu().sum()
+
+        if phase == 'training':
+            loss.backward()
+            optimizer.step()
+
+         loss = running_loss / len(data_loader.dataset)
+        accuracy = 100. * running_correct.item() / len(data_loader.dataset)
+        print(
+        f'{phase} loss is {loss:{5}.{2}} and {phase} accuracy is {running_correct}/{len(data_loader.dataset)}{accuracy:{10}.{4}}')
+
+        # print("gound_truth_list:{}".format(gound_truth_list))
+        # print("answer_list:{}".format(answer_list))
+
+        return loss, accuracy

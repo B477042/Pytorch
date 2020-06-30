@@ -37,7 +37,7 @@ for i in range(6):
 	pyplot.imshow(image,)
 # show the figure
 pyplot.show()
-
+'''
 dogFolder = './data/dogs/'
 for i in range(6):
 	pyplot.subplot(330+1+i)
@@ -48,3 +48,4 @@ for i in range(6):
 pyplot.show()
 
 
+'''
